@@ -1,8 +1,6 @@
 # Honeywords
 Code for our 2018 NDSS paper "A Security Analysis of Honeywords" and 2022 IEEE S&amp;P paper "How to Attack and Generate Honeywords"
 
-<b>If you decide to use our code, please cite our paper 🤝.</b>
-
 ## A Security Analysis of Honeywords
 
 ### Abstract
@@ -66,3 +64,39 @@ There is a another more serious problem in the honeyindex system. The passwords 
 The storage cost of the honeyindex system is less than the honeyword system, because honeyindex only stores one hash per user, while the honeyword system needs to store $k$ hashes per user. But the benefit of the honeyindex system is come at the cost of heavy computation.
 
 The honeyword system uses the same salt for all the sweetwords of one user. When a user logins with password $pw$, the website only needs to compute the hash of $pw$ and compare the hash value with the hashes of $k$ sweetwords. But a user's sweetwords in the honeyindex system is hashed with different salt (because different accounts will, generally, have a different salt), so the website needs to compute $k$ times of slated-hash  at worst and $\frac{k}{2}$ hashes on average. Generally, it is recommended practice for the website to  use a slow hash function (e.g., bcrypt and PBKDF2) to securely store user passwords. As a result, the authentication time will be wasted at computing $k$ slow hashes. In all, the computational cost in a login of the honeyindex system is, on average, $\frac{k}{2}$ times larger than that of the honeyword system.
+
+### Research Paper
+
+The papers are available at the [NDSS Symposium](https://www.ndss-symposium.org/wp-content/uploads/2018/02/ndss2018_02B-2_Wang_paper.pdf) and [IEEE Explore].
+
+<b>If you use any part of our codes, you are committed to cite the following paper:</b>
+
+```latex
+@inproceedings{wang2018analysis,
+    author      = {
+        Wang, Ding and 
+        Cheng, Haibo and 
+        Wang, Ping and
+        Yan, Jeff and 
+        Huang, Xinyi
+    },
+    booktitle   = {NDSS},
+    title       = {{A Security Analysis of Honeywords}},
+    year        = {2018}
+}
+
+@inproceedings{wang2022attack,
+    author      = {
+        Wang, Ding and 
+        Zou, Yunkai and 
+        Dong, Qiying and
+        Song, Yuanming and 
+        Huang, Xinyi
+    },
+    booktitle   = {IEEE Symposium on Security and Privacy (SP)},
+    title       = {{How to attack and generate honeywords}},
+    year        = {2022},
+    pages       = {966--983}
+}
+```
+
